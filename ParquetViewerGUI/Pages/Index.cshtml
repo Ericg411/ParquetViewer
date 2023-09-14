@@ -1,10 +1,35 @@
 ﻿@page
+@using ParquetViewer.Classes;
+@using ParquetViewer.Controllers;
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome to ParquetViewer</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to ParquetViewer!</h1>
+    <p>Please select a file.</p>
+    <table class="table">
+        <thead>
+            <th>File Name</th>
+            <th>Count</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </thead>
+        @{
+            ParquetFileController cont = new ParquetFileController();
+            foreach (List<ParquetFile> list in cont.Get().Result)
+            {
+                <tbody>
+                    <td>@list[0].FileName</td>
+                    <td>@list.Count</td>
+                    <td><a asp-page="/Main" asp-route-name="@list[0].FileName">View</a></td>
+                    <td><a asp-page="/Edit" asp-route-name="@list[0].FileName">Edit</a></td>
+                    <td><button onclick="@cont.Delete(list[0].FileName)">Delete</button></td>
+                </tbody>
+            }
+        }
+    </table>
 </div>

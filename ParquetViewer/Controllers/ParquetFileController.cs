@@ -8,9 +8,6 @@ namespace ParquetViewer.Controllers
     [Route("[controller]")]
     public class ParquetFileController : ControllerBase
     {
-        /// <summary>
-        /// TEST
-        /// </summary>
         [HttpGet]
         public async Task<IList<IList<ParquetFile>>> Get()
         {

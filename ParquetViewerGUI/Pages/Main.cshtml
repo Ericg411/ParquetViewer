@@ -1,27 +1,35 @@
-﻿@page
+﻿@page "{name}"
+@using ParquetViewer.Classes;
+@using ParquetViewer.Controllers;
 @model ParquetViewerGUI.Pages.MainModel
 @{
-    ViewData["Title"] = "Testerson Lee";
+    ViewData["Title"] = "Main View";
 }
 <section id="main">
-    <h1>A little bit about Fourth Mama</h1>
-    <p>
-        Fourth Coffee was founded in 2010 and delivers coffee and fresh baked goods right to your door.
-        In another life, Bill Baker was a developer by day and pastry chef by night.
-        But soon Bill's innate skills with all things involving butter, flour and sugar put him
-        even more in demand than his programming talents and what started out as a way to satisfy
-        his own sweet tooth became all-consuming.  Fourth Coffee is not only a candy-coated wonderland
-        of coffee, pastries, cookies and cakes, it also honors his tech background by employing a state
-        of the art online ordering system that makes it easy for anybody with internet access to
-        order his all natural, locally-sourced confections and have them delivered to their
-        door within 24 hours.
-    </p>
     <table class="table">
-        <thead>A</thead>
-        <thead>B</thead>
-        <thead>C</thead>
-        <tbody>A</tbody>
-        <tbody>B</tbody>
-        <tbody>C</tbody>
+        <thead>
+            <th>File Name</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Value</th>
+        </thead>
+        @{
+            string route = Url.RouteUrl(ViewContext.RouteData.Values);
+            int index = route.LastIndexOf('/');
+            string fileName = route.Remove(0, index + 1);
+            int trimIndex = fileName.IndexOf('.');
+            fileName = fileName.Remove(trimIndex);
+            ParquetFileController context = new ParquetFileController();
+            IList<ParquetFile> parquetList = context.GetOneFile(fileName).Result;
+            foreach(ParquetFile file in parquetList)
+            {
+                <tbody>
+                    <td>@file.FileName</td>
+                    <td>@file.Id</td>
+                    <td>@file.Name</td>                                             
+                    <td>@file.Value</td>                                             
+                </tbody>
+            }
+            }
     </table>
 </section>
