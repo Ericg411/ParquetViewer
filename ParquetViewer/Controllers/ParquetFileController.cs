@@ -40,7 +40,7 @@ namespace ParquetViewer.Controllers
 
         [HttpPost]
         [Route("{fileName}/{length}")]
-        public async Task Post(string fileName, int length)
+        public async Task Create(string fileName, int length)
         {
             List<ParquetFile> parquetFiles = new List<ParquetFile>();
             foreach (int i in Enumerable.Range(0, length))

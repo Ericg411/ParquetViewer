@@ -28,7 +28,7 @@ public class ApiTest
     [TestMethod]
     public async Task ICreateNewFile_VerifyFileCreated()
     {
-        _testController.Post("test", 3);
+        _testController.Create("test", 3);
         IList<IList<ParquetFile>> files = _testController.Get().Result;
         bool created = files.Where(x => x[0].FileName == "test.parquet").Any();
         if (created)
@@ -41,7 +41,7 @@ public class ApiTest
     [TestMethod]
     public async Task IDeleteAFile_VerifyGone()
     {
-        _testController.Post("test", 3);
+        _testController.Create("test", 3);
         System.IO.File.Delete($"C:\\Users\\eg014903\\source\\repos\\ParquetViewer\\ParquetViewer\\TestFiles\\test.parquet");
         IList<IList<ParquetFile>> files = _testController.Get().Result;
         bool created = files.Where(x => x[0].FileName == "test.parquet").Any();
@@ -51,7 +51,7 @@ public class ApiTest
     [TestMethod]
     public async Task IGetOneFile_VerifyOnlyOneFile()
     {
-        _testController.Post("test", 3);
+        _testController.Create("test", 3);
         IList<IList<ParquetFile>> test = _testController.Get().Result;
         int howMany = test.Where(x => x[0].FileName == "test.parquet").Count();
         Assert.AreEqual(1, howMany);
@@ -60,7 +60,7 @@ public class ApiTest
     [TestMethod]
     public async Task IUpdateNameAndValue_IGetUpdatedFile()
     {
-        _testController.Post("testTwo", 3);
+        _testController.Create("testTwo", 3);
         _testController.Update("testTwo", 0, "HOTDOGS", 100);
         IList<ParquetFile> test = _testController.GetOneFile("testTwo").Result;
         bool updated = false;

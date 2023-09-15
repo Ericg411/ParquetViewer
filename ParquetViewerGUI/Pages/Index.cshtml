@@ -10,6 +10,7 @@
 <div class="text-center">
     <h1 class="display-4">Welcome to ParquetViewer!</h1>
     <p>Please select a file.</p>
+    <a id="createNew" asp-page="/Create">Create New File</a>
     <table class="table">
         <thead>
             <th>File Name</th>
@@ -27,7 +28,7 @@
                     <td>@list.Count</td>
                     <td><a asp-page="/Main" asp-route-name="@list[0].FileName">View</a></td>
                     <td><a asp-page="/Edit" asp-route-name="@list[0].FileName">Edit</a></td>
-                    <td><button onclick="@cont.Delete(list[0].FileName)">Delete</button></td>
+                    <td><a asp-page="/Delete" asp-route-name="@list[0].FileName">Delete</a></td>
                 </tbody>
             }
         }

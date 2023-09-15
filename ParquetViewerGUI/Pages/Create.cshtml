@@ -1,0 +1,14 @@
+﻿@page
+@using ParquetViewer.Classes;
+@using ParquetViewer.Controllers;
+@model ParquetViewerGUI.Pages.CreateModel
+@{
+}
+<h1>Create a File</h1>
+<form method="post" class="createForm">
+    <label for="fileName">File Name:</label>
+    <input type="text" name="fileName"/>
+    <label for="length">Number of entries:</label>
+    <input type="text" name="length"/>
+    <input type="submit"/>
+</form>

@@ -1,0 +1,21 @@
+﻿@page "{name}"
+@using ParquetViewer.Classes;
+@using ParquetViewer.Controllers;
+@model ParquetViewerGUI.Pages.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+}
+@{
+    string route = Url.RouteUrl(ViewContext.RouteData.Values);
+    int index = route.LastIndexOf('/');
+    string fileName = route.Remove(0, index + 1);
+    int trimIndex = fileName.IndexOf('.');
+    fileName = fileName.Remove(trimIndex);
+    ParquetFileController context = new ParquetFileController();
+    <h1>Are you sure you want to delete @fileName?</h1>
+    <form method="post">
+    <input type="hidden" asp-for="FileName" value="@fileName"/>
+    <input type="submit" value="Yes">
+    <a asp-page="Index">No</a>
+    </form>
+}
