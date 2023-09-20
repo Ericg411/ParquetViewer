@@ -8,8 +8,8 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome to ParquetViewer!</h1>
-    <p>Please select a file.</p>
+    <h1 class="display-4">Welcome to ParquetViewer</h1>
+    <p style="font-size: 1.2rem;">Please select a file.</p>
     <a id="createNew" asp-page="/Create">Create New File</a>
     <table class="table">
         <thead>
@@ -26,9 +26,9 @@
                 <tbody>
                     <td>@list[0].FileName</td>
                     <td>@list.Count</td>
-                    <td><a asp-page="/Main" asp-route-name="@list[0].FileName">View</a></td>
-                    <td><a asp-page="/Edit" asp-route-name="@list[0].FileName">Edit</a></td>
-                    <td><a asp-page="/Delete" asp-route-name="@list[0].FileName">Delete</a></td>
+                    <td><a asp-page="/Main" asp-route-name="@list[0].FileName" class="buttons">View</a></td>
+                <td><a asp-page="/Edit" asp-route-name="@list[0].FileName" class="buttons">Edit</a></td>
+                <td><a asp-page="/Delete" asp-route-name="@list[0].FileName" class="buttons">Delete</a></td>
                 </tbody>
             }
         }

@@ -4,11 +4,17 @@
 @model ParquetViewerGUI.Pages.CreateModel
 @{
 }
-<h1>Create a File</h1>
-<form method="post" class="createForm">
-    <label for="fileName">File Name:</label>
-    <input type="text" name="fileName"/>
-    <label for="length">Number of entries:</label>
-    <input type="text" name="length"/>
+<h1 class="createAFile">Create a File</h1>
+<a asp-page="Index" class="buttons back">Back to Home</a>
+<form method="post" class="forms">
+    <div class="formInputs">
+        <label asp-for="FileName">File Name:</label>
+        <input type="text" name="fileName"/>
+    </div>
+    <div class="formInputs">
+        <label asp-for="Length">Number of entries:</label>
+        <input type="text" name="length"/>
+    </div>
     <input type="submit"/>
+    
 </form>
