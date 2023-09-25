@@ -16,8 +16,14 @@ namespace ParquetViewerGUI.Pages
         public string Length { get; set; }
         public async Task<IActionResult> OnPostAsync()
         {
+            string[] spaceLess = FileName.Split(" ");
+            string newFileName = "";
+            foreach (string s in spaceLess)
+            {
+                newFileName += s;
+            }
             ParquetFileController context = new ParquetFileController();
-            await context.Create(FileName, Int32.Parse(Length));
+            await context.Create(newFileName, Int32.Parse(Length));
             return new RedirectToPageResult("Index");
         }
     }
